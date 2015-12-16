@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Counting to Infinity</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2015-11-20T12:53:26-05:00</updated>
+<id>/</id>
+<author>
+  <name>Bobby M</name>
+  <uri>/</uri>
+  <email>no@spam.com</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Using jq with curl on Cygwin]]></title>
+ <link rel="alternate" type="text/html" href="/using-jq-with-curl-on-cygwin/" />
+  <id>/using-jq-with-curl-on-cygwin</id>
+  <published>2015-10-16T00:00:00-04:00</published>
+  <updated>2015-10-16T00:00:00-04:00</updated>
+  <author>
+    <name>Bobby M</name>
+    <uri></uri>
+    <email>no@spam.com</email>
+  </author>
+  <content type="html">
+    &lt;h2 id=&quot;parsing-json-from-http-requests-with-curl-using-jq-in-cygwin&quot;&gt;Parsing JSON from HTTP requests with curl, using jq, in Cygwin&lt;/h2&gt;
+
+&lt;p&gt;Sometimes you’re just not on a Mac or Linux machine and need to work with JSON.&lt;/p&gt;
+
+&lt;p&gt;jq is a great tool, and if I was on my Mac and wanted to parse some JSON, retrieving it with an HTTP request, I’d just do:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq '.'&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But on Windows, after downloading jq-win64.exe and adding it to my PATH, if I just try to pipe it, it’s not happy:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq-win64.exe '.'&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;curl gets the content, but it bombs.&lt;/p&gt;
+
+&lt;p&gt;So, I just wrap the .exe in a sh script named jq, with this content:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;#!/bin/bash
+jq-win64.exe --color-output &amp;quot;$@&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And now it works!&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ curl -sS 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq '.[0].commit.message'
+&amp;quot;Revert \&amp;quot;Adjust spacing of section headers to account for nav bar (fix #986)\&amp;quot;\n\nThis reverts commit 73b8413d10751c7be3e54d83ea338b3e895bdda3.\n\nThe fix for #986 caused #988.&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/using-jq-with-curl-on-cygwin/&quot;&gt;Using jq with curl on Cygwin&lt;/a&gt; was originally published by Bobby M at &lt;a href=&quot;&quot;&gt;Counting to Infinity&lt;/a&gt; on October 16, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Taking a dump]]></title>
+ <link rel="alternate" type="text/html" href="/taking-a-dump/" />
+  <id>/taking-a-dump</id>
+  <published>2015-10-16T00:00:00-04:00</published>
+  <updated>2015-10-16T00:00:00-04:00</updated>
+  <author>
+    <name>Bobby M</name>
+    <uri></uri>
+    <email>no@spam.com</email>
+  </author>
+  <content type="html">
+    &lt;h2 id=&quot;simple-example-of-taking-a-heap-dump-and-analyzing-it&quot;&gt;Simple example of taking a (heap) dump and analyzing it&lt;/h2&gt;
+
+&lt;p&gt;I just wanted to prove that I can take a dump, and see something meaningful in it. To do this I wrote a simple program that creates an obvious memory usage pattern that should be dead-simple to see in the dump.&lt;/p&gt;
+
+&lt;p&gt;Compile and run the following code. It will intentionally create an array with many Integers. &lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;java&quot;&gt;public class DumpTest
+{
+	public static void main(String[] args) throws Exception
+	{	
+		final Integer NUM_FACTS = 100000;
+		Foo[] x = new Foo[NUM_FACTS];
+		
+		for(int i = 0; i &amp;lt; NUM_FACTS; i++)
+			x[i] = new DumpTest().new Foo();
+		
+		System.out.println(&amp;quot;Populated array with &amp;quot; + NUM_FACTS.toString() + &amp;quot;. Waiting 10 seconds...&amp;quot;);
+		Thread.sleep(256000);
+		System.out.println(&amp;quot;Done.&amp;quot;);
+	}
+	
+	public class Foo
+	{
+		public int x;
+	}
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The code conveniently waits after it has created all these objects, so we can take the dump while it’s waiting:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;jmap -dump:format=b,file=heap.bin 8216&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Open it up in VisualVM, and there we have it - many, many Integers.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/taking-a-dump/&quot;&gt;Taking a dump&lt;/a&gt; was originally published by Bobby M at &lt;a href=&quot;&quot;&gt;Counting to Infinity&lt;/a&gt; on October 16, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Motion Activated Philips Hue with Raspberry Pi]]></title>
+ <link rel="alternate" type="text/html" href="/motion-activated-philips-hue-with-raspberry-pi/" />
+  <id>/motion-activated-philips-hue-with-raspberry-pi</id>
+  <published>2015-08-27T00:00:00-04:00</published>
+  <updated>2015-08-27T00:00:00-04:00</updated>
+  <author>
+    <name>Bobby M</name>
+    <uri></uri>
+    <email>no@spam.com</email>
+  </author>
+  <content type="html">
+    &lt;h2 id=&quot;controlling-hue-lights-with-a-pi-and-python-over-wifi&quot;&gt;Controlling Hue lights with a Pi and Python over wifi&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;media/intro3.jpg&quot; alt=&quot;intro3.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TODO - embed youtube video&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;I finally found an excuse to go out and buy a Hue kit when my first baby arrived. I want the nursery to offer a range of interesting sensory stimuli for his little developing mind, especially visual and auditory. A Bluetooth speaker and Spotify handle the latter easily enough, and this clever technology from Philips - with it’s beautiful range of saturated, luminous treats - can engage the retinas and, I hope, be a practical solution to some more mundane problems.&lt;/p&gt;
+
+&lt;p&gt;After setting up the out-of-the-box kit and experimenting with a few apps, I found the experience quite pleasing (and so did he). I could run a lower-intensity scene for 3am changes, psychedelic animated color progressions when he’s awake, and even have the lights sync’d up with music. I found the Hue Disco app is able to do it all, though there are many options.&lt;/p&gt;
+
+&lt;p&gt;However, one very practical problem is - when you’re carrying an infant in both hands at 3am in the dark, finding your smartphone, unlocking it, launching an app, and clicking through to start the scen you want is not very convenient. It almost makes you wish there was just a switch on the wall.&lt;/p&gt;
+
+&lt;p&gt;I wanted this to happen automatically. When I walk into the room I want the lights to just turn on. When I’m done and I leave, turn off. But how?&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bmantoni/pi-hue-motion&quot;&gt;Source Code on Github&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/motion-activated-philips-hue-with-raspberry-pi/&quot;&gt;Motion Activated Philips Hue with Raspberry Pi&lt;/a&gt; was originally published by Bobby M at &lt;a href=&quot;&quot;&gt;Counting to Infinity&lt;/a&gt; on August 27, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Cordova CLI when Using Choclatey to Install Node]]></title>
+ <link rel="alternate" type="text/html" href="/blog/cordova-cli-when-using-choclatey-to-install-node/" />
+  <id>/blog/cordova-cli-when-using-choclatey-to-install-node</id>
+  <published>2015-01-19T00:00:00-05:00</published>
+  <updated>2015-01-19T00:00:00-05:00</updated>
+  <author>
+    <name>Bobby M</name>
+    <uri></uri>
+    <email>no@spam.com</email>
+  </author>
+  <content type="html">
+    &lt;h2 id=&quot;setting-path-for-cordova-cli-when-using-choclatey-on-windows&quot;&gt;Setting Path for Cordova CLI when using Choclatey on Windows&lt;/h2&gt;
+
+&lt;p&gt;If you use Choclatey to install node (and then do npm install -g cordova) and try to follow the Phonegap/Cordova instructions, you’ll hit a wall when you try to run the cordova command. The problem is here:
+http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface
+&amp;gt; You may need to add the npm directory to your PATH in order to invoke globally installed npm modules. On Windows, npm can usually be found at C:\Users\username\AppData\Roaming\npm.&lt;/p&gt;
+
+&lt;p&gt;The reason is that choclatey doesn’t install node where it would go if you installed it directly. Rather (by default) it puts things under C:\ProgramData\choclatey&lt;/p&gt;
+
+&lt;p&gt;So if you add the above to your path, that’s not where cordova will be and you’ll get an error that the executable can’t be found.&lt;/p&gt;
+
+&lt;p&gt;So, to find the correct path, use this:
+&amp;gt; PS &amp;gt; npm config get prefix
+C:\ProgramData\chocolatey\lib\nodejs.commandline.0.10.35\tools&lt;/p&gt;
+
+&lt;p&gt;In that directory you should find a file, cordova.cmd.&lt;/p&gt;
+
+&lt;p&gt;So, add that directory to your path and you should be good to go!&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/blog/cordova-cli-when-using-choclatey-to-install-node/&quot;&gt;Cordova CLI when Using Choclatey to Install Node&lt;/a&gt; was originally published by Bobby M at &lt;a href=&quot;&quot;&gt;Counting to Infinity&lt;/a&gt; on January 19, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Unit Testing ASP.NET Identity ]]></title>
+ <link rel="alternate" type="text/html" href="/blog/unit-testing-asp-net-identity/" />
+  <id>/blog/unit-testing-asp-net-identity</id>
+  <published>2014-12-02T00:00:00-05:00</published>
+  <updated>2014-12-02T00:00:00-05:00</updated>
+  <author>
+    <name>Bobby M</name>
+    <uri></uri>
+    <email>no@spam.com</email>
+  </author>
+  <content type="html">
+    &lt;h2 id=&quot;mocking-aspnet-identity-for-web-api-and-mvc&quot;&gt;Mocking ASP.NET Identity for Web API and MVC&lt;/h2&gt;
+
+&lt;p&gt;In the earlier days, it was quite a pain to test any built-in .NET classes, especially before the days of MVC. Even after MVC, using anything like the HTTPContext or Membership APIs directly from your Controller logic could end up making things difficult or impossible to test, since you’d be hitting concrete classes with no interfaces, static classes, or other things difficult-to-mock/stub.&lt;/p&gt;
+
+&lt;p&gt;Typically I’d end up with layers of wrappers to decouple my code and make it testable and modular. But how far things have come. &lt;/p&gt;
+
+&lt;p&gt;An example - I have a Web API ApiController that I’m using to authenticate the same username/password credentials created through MVC. This lets me share the same user management pages, persistence, password policies, etc… in both the API and web interface. When testing, I don’t want to re-test Microsoft’s code - I only want to test how my code behaves. It turns out I haven’t needed to introduce any wrappers - things are now very nearly designed to allow you to swap things in where needed.&lt;/p&gt;
+
+&lt;p&gt;First, I need a way to access the UserManager from my ApiController. Here we see another nice addition to the .NET stack: Owin. Again, it’s a nice layer between the .NET runtime/app server/modules and my own code, and can provide something like a Service Locator. I just add this property to my ApiController:&lt;/p&gt;
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;c&quot;&gt;private ApplicationUserManager _userManager;
+public ApplicationUserManager UserManager
+{
+    get
+    {
+        if (_userManager == null)
+        {
+            _userManager = Request.GetOwinContext().GetUserManager&amp;lt;ApplicationUserManager&amp;gt;();
+        }
+        return _userManager;
+    }
+    set //public for tests only
+    {
+        _userManager = value;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Which relies on an extension method I add somewhere:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;c&quot;&gt;public static IOwinContext GetOwinContext(this HttpRequestMessage request)
+{
+    var context = request.Properties[&amp;quot;MS_HttpContext&amp;quot;] as HttpContextWrapper;
+    if (context != null)
+    {
+        return HttpContextBaseExtensions.GetOwinContext(context.Request);
+    }
+    return null;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, to setup my tests I use this method - calling it on my controller after instantiating it. It injects a mocked ApplicationUserManager into the controller before I act on it. It prepares a valid user to be authenticated against (or not) by mocking the underlying IUserStore. Moq makes this quite elegant by offering the .As operation - which dovetails nicely with the UserManager’s discovery of interface implementations.&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;c&quot;&gt;private void MockUserManager(MyController c)
+{
+    var hpw = new PasswordHasher().HashPassword(&amp;quot;testpass&amp;quot;);
+    var validTestUser = new ApplicationUser() { Id = &amp;quot;1&amp;quot;, UserName = &amp;quot;testuser&amp;quot;, PasswordHash = hpw };
+
+    var us = new Mock&amp;lt;IUserStore&amp;lt;ApplicationUser&amp;gt;&amp;gt;(MockBehavior.Strict);
+    us.Setup(p =&amp;gt; p.FindByNameAsync(&amp;quot;testuser&amp;quot;)).ReturnsAsync(validTestUser);
+    us.As&amp;lt;IUserPasswordStore&amp;lt;ApplicationUser&amp;gt;&amp;gt;()
+        .Setup(p =&amp;gt; p.GetPasswordHashAsync(It.IsAny&amp;lt;ApplicationUser&amp;gt;())).ReturnsAsync(hpw);
+    var aum = new ApplicationUserManager(us.Object);
+
+    c.UserManager = aum;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, with everything arranged code my my controller like &lt;code&gt;var user = UserManager.Find(username, password);&lt;/code&gt; will operate on the data loaded in the test setup. Sweet!&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/blog/unit-testing-asp-net-identity/&quot;&gt;Unit Testing ASP.NET Identity &lt;/a&gt; was originally published by Bobby M at &lt;a href=&quot;&quot;&gt;Counting to Infinity&lt;/a&gt; on December 02, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>
