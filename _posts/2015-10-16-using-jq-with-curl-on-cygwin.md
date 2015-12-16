@@ -1,13 +1,10 @@
 ---
 layout: post
-splash: ""
-tags: 
-  - "null"
+categories: [windows]
+tags: [tips]
 published: true
 title: Using jq with curl on Cygwin
 ---
-
-
 
 ## Parsing JSON from HTTP requests with curl, using jq, in Cygwin
 

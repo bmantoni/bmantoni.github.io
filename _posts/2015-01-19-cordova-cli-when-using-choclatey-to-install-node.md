@@ -1,13 +1,14 @@
 ---
 layout: post
-category: blog
+categories: [mobile]
+tags: [windows, cordova, chocolatey]
 published: true
 title: Cordova CLI when Using Choclatey to Install Node
 ---
 
 ## Setting Path for Cordova CLI when using Choclatey on Windows
 
-If you use Choclatey to install node (and then do npm install -g cordova) and try to follow the Phonegap/Cordova instructions, you'll hit a wall when you try to run the cordova command. The problem is here:
+If you use Chocolatey to install node (and then do npm install -g cordova) and try to follow the Phonegap/Cordova instructions, you'll hit a wall when you try to run the cordova command. The problem is here:
 http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface
 > You may need to add the npm directory to your PATH in order to invoke globally installed npm modules. On Windows, npm can usually be found at C:\Users\username\AppData\Roaming\npm.
 

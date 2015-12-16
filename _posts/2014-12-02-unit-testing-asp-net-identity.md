@@ -1,8 +1,9 @@
 ---
 layout: post
-category: blog
+categories: [.net]
+tags: [.net, testing]
 published: true
-title: "Unit Testing ASP.NET Identity "
+title: Unit Testing ASP.NET Identity
 ---
 
 ## Mocking ASP.NET Identity for Web API and MVC

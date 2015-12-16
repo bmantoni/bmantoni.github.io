@@ -1,12 +1,10 @@
 ---
 layout: post
-splash: ""
-tags: 
-  - "null"
+categories: [java]
+tags: [testing]
 published: true
 title: Taking a dump
 ---
-
 
 ## Simple example of taking a (heap) dump and analyzing it
 
