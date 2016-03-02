@@ -8,7 +8,7 @@ title: Motion Activated Philips Hue with Raspberry Pi
 
 ## Controlling Hue lights with a Pi and Python over wifi
 
-![intro3.jpg]({{site.baseurl}}media/intro3.jpg)
+![intro3.jpg](media/intro3.jpg)
 
 **TODO - embed youtube video** 
 
