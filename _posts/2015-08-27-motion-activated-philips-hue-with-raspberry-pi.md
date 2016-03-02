@@ -12,12 +12,16 @@ title: Motion Activated Philips Hue with Raspberry Pi
 
 **TODO - embed youtube video** 
 
-I finally found an excuse to go out and buy a Hue kit when my first baby arrived. I want the nursery to offer a range of interesting sensory stimuli for his little developing mind, especially visual and auditory. A Bluetooth speaker and Spotify handle the latter easily enough, and this clever technology from Philips - with it's beautiful range of saturated, luminous treats - can engage the retinas and, I hope, be a practical solution to some more mundane problems.
+Hue lights are great. The flexibility of having so many options for colors and brightness, and to be able to control multiple lights in different rooms is great. I wanted to use it in my nursery so we could have deep red light at low brightness for middle-of-the-night changes, but brighter warm light for the mornings, and something fun during the day. 
 
-After setting up the out-of-the-box kit and experimenting with a few apps, I found the experience quite pleasing (and so did he). I could run a lower-intensity scene for 3am changes, psychedelic animated color progressions when he's awake, and even have the lights sync'd up with music. I found the Hue Disco app is able to do it all, though there are many options.
+However, one very practical problem is - when you're carrying an infant in both hands at 3am in the dark, finding your smartphone, unlocking it, launching an app, and clicking through to start the scen you want is not very convenient. 
 
-However, one very practical problem is - when you're carrying an infant in both hands at 3am in the dark, finding your smartphone, unlocking it, launching an app, and clicking through to start the scen you want is not very convenient. It almost makes you wish there was just a switch on the wall.
+This is actually a problem in general I think. Unlocking a phone and getting to the app can just take too much time in many cases. It almost makes you wish there was just a switch on the wall.
 
-I wanted this to happen automatically. When I walk into the room I want the lights to just turn on. When I'm done and I leave, turn off. But how?
+So, I knew I wanted to motion control the thing. I wanted this to happen automatically when I walk into the room - I want the lights to just turn on. When I'm done and I leave, turn off. We can also use the time of day to determine what specific colors and brightness for each bulb. 
+
+I accomplished this with a Raspberry Pi, a motion control sensor, and some Python.
+
+TODO: add link
 
 [Source Code on Github](https://github.com/bmantoni/pi-hue-motion)
