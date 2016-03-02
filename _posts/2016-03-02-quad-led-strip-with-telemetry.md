@@ -36,7 +36,7 @@ Hardware:
 In Cleanflight:
 
  * set telemetry_inversion = 0
- * Ensured softserial disabled, telemetry enabled. telemetry_port and telemetry_provider don't seem to exist in CF
+ * Ensured softserial disabled and telemetry enabled.
  * On Ports tab, set USBUART Telemetry to FrSky (was Disabled)
 
 That got me my telemetry values back on my Taranis (Vfas, Cell, Cells), and I can enable LED_STRIP in CF!
