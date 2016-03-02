@@ -29,10 +29,12 @@ My wiring looks like:
 The lead with the X (pin 6) is removed.
 
 Hardware:
+
  * Cut and soldered 3 wires from a servo lead to ful01 as in diagram
  * Attached/soldered pin from ful01 to frsky (telemetry Rx)
 
 In Cleanflight:
+
  * set telemetry_inversion = 0
  * Ensured softserial disabled, telemetry enabled. telemetry_port and telemetry_provider don't seem to exist in CF
  * On Ports tab, set USBUART Telemetry to FrSky (was Disabled)
