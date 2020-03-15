@@ -1,14 +1,13 @@
 ---
 published: true
 ---
-
 ## Building a PIC Emulator - Part 1
 
 ### Choosing a target device - the PIC12F675
 Choosing this as there are only 35 instructions to learn, it's a simple micro, and I've been curious about PIC programming for a while.
 
 ### Using the XC8 Compiler to create a demo program
-![Capture.PNG]({{site.baseurl}}/_posts/Capture.PNG)
+![Capture.jpg]({{site.baseurl}}/_posts/Capture.jpg)
 
 ### Understanding the compilation inputs and outputs
 The [Compiler Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/52053B.pdf) explains all the files the compiler can output.
