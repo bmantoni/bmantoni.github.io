@@ -27,9 +27,15 @@ The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) exp
 **Program Memory**
 Comparing the address on line 2 in the HEX file with the starting instruction address in the assembly, they don't match up. Eventually I realised that the value in the hex is exactly double. 03DB * 2 = 07B6. I think this is because hex is a 32 bit format, but it's encoding 16 bit addresses.
 
-So, we need a data structure that can hold 1024 bytes of Program Data, and we'll load the instructions from the hex file into it.
+So, we need a data structure that can hold 1023 bytes of Program Data, and we'll load the instructions from the hex file into it.
 
 **Data Memory (Registers) - TODO**
+
+For registers, I need a data structure to hold 2 banks of 127 bytes each.
+
+**Stack**
+
+This seems complicated. It has an 8-level-deep hardware stack.
 
 ### Choosing a language/stack
 I'm thinking of using Flutter and Dart, as an excuse to learn them.
@@ -37,7 +43,7 @@ I'm thinking of using Flutter and Dart, as an excuse to learn them.
 ### Planning the emulator
 I'll need:
 * A Parser for Intel HEX to read the program and load it into memory
-* A Memory data structure
+* A Memory data structure (program, data, stack)
 * A Program Counter, pointing to the current instruction
 * A Microcontroller, that can execute all supported instructions
 * I/O
