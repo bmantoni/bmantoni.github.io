@@ -7,7 +7,7 @@ published: true
 Choosing this as there are only 35 instructions to learn, it's a simple micro, and I've been curious about PIC programming for a while.
 
 ### Using the XC8 Compiler to create a demo program
-![Capture.jpg]({{site.baseurl}}/_posts/Capture.jpg)
+![pic-demo-code.jpg]({{site.baseurl}}/media/pic-demo-code.jpg)
 
 ### Understanding the compilation inputs and outputs
 The [Compiler Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/52053B.pdf) explains all the files the compiler can output.
