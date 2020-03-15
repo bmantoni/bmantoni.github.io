@@ -29,7 +29,7 @@ I'm thinking of using Flutter and Dart, as an excuse to learn them.
 
 ### Planning the emulator
 I'll need:
-* A Parser to read the program and load it into memory
+* A Parser for Intel HEX to read the program and load it into memory
 * A Memory data structure
 * A Program Counter, pointing to the current instruction
 * A Microcontroller, that can execute all supported instructions
