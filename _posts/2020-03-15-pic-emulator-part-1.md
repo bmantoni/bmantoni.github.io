@@ -19,8 +19,9 @@ The important things for me are:
 
 So, I'll make *the emulator take the .hex file as its input*.
 
-### Understanding the instruction set
-The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains the Instruction Set.
+### Understanding the assembly and HEX format
+The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains opcode formats and instruction set.
+![instruction1.png]({{site.baseurl}}/media/instruction1.png)
 
 ### Understanding the memory layout
 
