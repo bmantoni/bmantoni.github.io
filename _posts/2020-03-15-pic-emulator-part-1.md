@@ -24,6 +24,12 @@ The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) exp
 ![instruction1.png]({{site.baseurl}}/media/instruction1.png)
 
 ### Understanding the memory layout
+**Program Memory**
+Comparing the address on line 2 in the HEX file with the starting instruction address in the assembly, they don't match up. Eventually I realised that the value in the hex is exactly double. 03DB * 2 = 07B6. I think this is because hex is a 32 bit format, but it's encoding 16 bit addresses.
+
+So, we need a data structure that can hold 1024 bytes of Program Data, and we'll load the instructions from the hex file into it.
+
+**Data Memory (Registers) - TODO**
 
 ### Choosing a language/stack
 I'm thinking of using Flutter and Dart, as an excuse to learn them.
