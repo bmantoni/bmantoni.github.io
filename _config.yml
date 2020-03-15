@@ -3,10 +3,9 @@ description:      Clever description goes here
 disqus_shortname: cnttoinf
 reading_time:     true
 words_per_minute: 200
-logo:             images/logo.png
-# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
+#logo:             images/logo.png
 # When testing locally leave blank or use http://localhost:4000
-# url: http://aronbordin.com/neo-hpstr-jekyll-theme
+url: http://bmantoni.github.io/
 
 menu:
   - title: 'Home'
@@ -33,20 +32,18 @@ owner:
   bio:            "Things I've done half-way then moved on, but don't want to forget."
   email:          no@spam.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter: aron_bordin
+  twitter: none
   facebook:
-  github: aron-bordin
+  github: bmantoni
   stackexchange:
   linkedin:
   instagram:
   flickr:
   tumblr:
-  # google plus id, include the '+', eg +AronBordin
-  google_plus:    +yourid
 
 social:
   - title: "github"
-    url: "https://github.com/aron-bordin"
+    url: "https://github.com/bmantoni"
   - title: "linkedin"
     url: "https://br.linkedin.com/in/aronbordin"
   - title: "youtube"
