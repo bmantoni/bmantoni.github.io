@@ -12,6 +12,13 @@ Choosing this as there are only 35 instructions to learn, it's a simple micro, a
 ### Understanding the compilation inputs and outputs
 The [Compiler Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/52053B.pdf) explains all the files the compiler can output.
 
+The important things for me are:
+* The input is C program - a `.c` file
+* The compiler can output an Assembly List file (.lst), with the --ASMLIST option, that is human readable and shows the addresses, hex opcodes, assembly instructions, and the original C code that it compiled from.
+* The .hex file output is in the [Intel HEX](https://en.wikipedia.org/wiki/Intel_HEX) format and is what would be fed into a PIC programmer to write to the chip.
+
+So, I'll make *the emulator take the .hex file as its input*.
+
 ### Understanding the instruction set
 The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains the Instruction Set.
 
