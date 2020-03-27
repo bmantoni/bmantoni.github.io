@@ -20,12 +20,10 @@ The important things for me are:
 
 So, I'll make the emulator take the .hex file as its input.
 
-### The HEX input format
-The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains opcode formats and instruction set.
-![instruction1.png]({{site.baseurl}}/media/instruction1.png)
-
 ### The instructions and opcodes
-The opcodes and fields are a variable-length, depending on which instruction it is. This ends up making things quite a bit more complicated.
+The opcodes and fields are a variable-length, depending on which instruction it is. This ends up making things quite a bit more complicated. So I'll need to match instructions based on a variable length of fixed MSBs, then parse out the remaining fields based on the instruction.
+
+The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains the instruction set.
 
 ![opcodes.PNG]({{site.baseurl}}/media/opcodes.PNG)
 
