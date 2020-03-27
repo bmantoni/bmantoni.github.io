@@ -4,9 +4,10 @@ published: true
 ## Building a PIC Emulator - Part 1
 
 ### Choosing a target device - the PIC12F675
-Choosing this as there are only 35 instructions to learn, it's a simple micro, and I've been curious about PIC programming for a while.
+I've been curious about PIC programming and microcontrollers in general for a while and saw this as an oppportunity to learn. Initially, I thought this would be a simpler choice compared to something like an Intel 8051, given that it has "only 35 instructions to learn" and is a small 8-pin microcontroller. But it turns out they pack a lot of functionality into these little things, and being little actually creates some complexity. But, sticking with it.
 
 ### Using the XC8 Compiler to create a demo program
+First, compiling a C program to the hex code that is actually programmed to the device. This same file will be the input to the emulator.
 ![pic-demo-code.jpg]({{site.baseurl}}/media/pic-demo-code.jpg)
 
 ### Understanding the compilation inputs and outputs
@@ -17,11 +18,15 @@ The important things for me are:
 * The compiler can output an Assembly List file (.lst), with the --ASMLIST option, that is human readable and shows the addresses, hex opcodes, assembly instructions, and the original C code that it compiled from.
 * The .hex file output is in the [Intel HEX](https://en.wikipedia.org/wiki/Intel_HEX) format and is what would be fed into a PIC programmer to write to the chip.
 
-So, I'll make *the emulator take the .hex file as its input*.
+So, I'll make the emulator take the .hex file as its input.
 
 ### Understanding the assembly and HEX format
 The [Data Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf) explains opcode formats and instruction set.
 ![instruction1.png]({{site.baseurl}}/media/instruction1.png)
+
+The opcodes and fields are a variable-length, depending on which instruction it is. This ends up making things quite a bit more complicated.
+
+
 
 ### Understanding the memory layout
 **Program Memory**
