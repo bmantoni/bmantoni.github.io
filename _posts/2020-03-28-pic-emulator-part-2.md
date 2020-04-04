@@ -9,13 +9,63 @@ published: false
 
 The HEX parser and program runner were pretty straightforward. I parse the hex and extract the 2-byte words, loading them into a Program Memory. A Program Counter (Address) is used as a pointer to the current instruction, and it's incremented from 0 until it finds an instruction it recognises. The challenge came when I tried to figure out how to increment it.
 
-The PIC uses 14-bit opcodes, and uses word addressing. So Program Memory Address 0x2 is actually byte address 0x4, since each word is stored in 2 bytes. I hide this in a ProgramMemory class.
+The PIC uses 14-bit opcodes, and uses word addressing. So **Program Memory** Address 0x2 is actually byte address 0x4, since each word is stored in 2 bytes. I hide this in a ProgramMemory class.
 
-Data Memory is separate, and uses normal byte addressing. There complexity here comes from the memory banking, which is switched using a bit at address 0x5, the Status register.
+**Data Memory** is separate, since PICs use Harvard Architecture, and uses normal byte addressing. The complexity here comes from the memory banking, which is switched using a bit at address 0x5, the Status register. I abstract this using an interface that the Memory classes implement.
 
-### Using the XC8 Compiler to create a demo program
-First, compiling a C program to the hex code that is actually programmed to the device. This same file will be the input to the emulator.
-![demo-program.png]({{site.baseurl}}/media/demo-program.png)
+I wanted each instruction implementation to be as minimal as possible - with each Instruction as a class that only has the behaviours that differ per instruction.
 
-### The C compiler outputs
-The [Compiler Guide](https://ww1.microchip.com/downloads/en/DeviceDoc/52053B.pdf) explains all the files the compiler can output.
+So a simple instruction like movwf can be implemented like this:
+
+{% highlight dart %}
+// move W to f
+class MovWf extends Instruction {
+  @override
+  Fields extractFields(ByteData opcode) {
+    return Fields(f: extractField(opcode, 7, 7));
+  }
+
+  @override
+  int get mask => 1;
+
+  @override
+  int get offset => 7;
+
+  @override
+  Instructions get name => Instructions.movwf;
+
+  @override
+  Function(Fields, Memory) get runFunc => (f, m) => m.data.setByte(f.f, m.w);
+}
+{% endhighlight %}
+
+Each instruction needs to extract the fields it uses from the opcode, define the MSB bits that identify it, have a name, and implement a function that it performs. Optionally, some instructions affect control flow, so can implement a second function to say how the next instruction should be chosen. For example, this is goto:
+
+{% highlight dart %}
+class Goto extends Instruction {
+  @override
+  Fields extractFields(ByteData opcode) {
+    return Fields(k: extractField(opcode, 11, 11));
+  }
+
+  @override
+  int get mask => 5;
+
+  @override
+  int get offset => 11;
+
+  @override
+  Instructions get name => Instructions.goto;
+
+  @override
+  Function(Fields, Memory) get runFunc => (f, m) => {};
+
+  @override
+  ControlFlow Function(Fields, Memory) get controlFunc => 
+    (f, m) => ControlFlow(goto: f.k);
+}
+{% endhighlight %}
+
+Next up:
+* Implement the Stack and call
+* Addition, subtraction, etc...
