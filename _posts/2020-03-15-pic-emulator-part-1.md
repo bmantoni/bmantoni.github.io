@@ -3,6 +3,9 @@ published: true
 ---
 ## Building a PIC Emulator - Part 1
 
+[Part 2 here](http://bmantoni.github.io//pic-emulator-part-2/)
+[Code is here](https://github.com/bmantoni/8bit-dart-emulator)
+
 ### Choosing a target device - the PIC12F675
 I've been curious about PIC programming and microcontrollers in general for a while and saw this as an oppportunity to learn. Initially, I thought this would be a simpler choice compared to something like an Intel 8051, given that it has "only 35 instructions to learn" and is a small 8-pin microcontroller. But it turns out they pack a lot of functionality into these little things, and being little actually creates some complexity. But, sticking with it.
 
@@ -43,5 +46,3 @@ I'll need:
 * A CPU, that can execute all supported instructions
 * I/O (later)
 * A (much later) UI that lets me watch the states of the registers and GPIO "pins"
-
-Code is here: Code is here: https://github.com/bmantoni/8bit-dart-emulator
