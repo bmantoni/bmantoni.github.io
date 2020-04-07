@@ -40,7 +40,7 @@ class MovWf extends Instruction {
 }
 {% endhighlight %}
 
-Each instruction needs to extract the fields it uses from the opcode, define the MSB bits that identify it, have a name, and implement a function that it performs. Optionally, some instructions affect control flow, so can implement a second function to say how the next instruction should be chosen. For example, this is goto:
+Each instruction needs to extract the fields it uses from the opcode, define the MSB bits that identify it, have a name, and (optionally) implement a function that it performs on memory/registers. Some instructions affect control flow, so they can optionally implement a second function to say how the next instruction should be chosen. For example, this is goto:
 
 {% highlight dart %}
 class Goto extends Instruction {
@@ -57,9 +57,6 @@ class Goto extends Instruction {
 
   @override
   Instructions get name => Instructions.goto;
-
-  @override
-  Function(Fields, Memory) get runFunc => (f, m) => {};
 
   @override
   ControlFlow Function(Fields, Memory) get controlFunc => 
