@@ -3,7 +3,8 @@ published: true
 ---
 ## Building a PIC Emulator - Part 1
 
-[Part 2 here](http://bmantoni.github.io//pic-emulator-part-2/)
+[Part 2 is here](http://bmantoni.github.io//pic-emulator-part-2/)
+
 [Code is here](https://github.com/bmantoni/8bit-dart-emulator)
 
 ### Choosing a target device - the PIC12F675
