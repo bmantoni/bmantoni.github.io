@@ -68,6 +68,9 @@ class Goto extends Instruction {
 }
 {% endhighlight %}
 
-Next up:
+### Next up
+
 * Implement the Stack and call
 * Addition, subtraction, etc...
+
+[Part 3 is here](http://bmantoni.github.io//pic-emulator-part-3/)
