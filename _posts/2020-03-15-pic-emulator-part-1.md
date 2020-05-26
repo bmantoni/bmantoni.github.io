@@ -5,6 +5,8 @@ published: true
 
 [Part 2 is here](http://bmantoni.github.io//pic-emulator-part-2/)
 
+[Part 3 is here](http://bmantoni.github.io//pic-emulator-part-3/)
+
 [Code is here](https://github.com/bmantoni/8bit-dart-emulator)
 
 ### Choosing a target device - the PIC12F675
@@ -47,3 +49,9 @@ I'll need:
 * A CPU, that can execute all supported instructions
 * I/O (later)
 * A (much later) UI that lets me watch the states of the registers and GPIO "pins"
+
+[Part 2 is here](http://bmantoni.github.io//pic-emulator-part-2/)
+
+[Part 3 is here](http://bmantoni.github.io//pic-emulator-part-3/)
+
+[Code is here](https://github.com/bmantoni/8bit-dart-emulator)
