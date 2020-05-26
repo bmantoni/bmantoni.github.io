@@ -55,4 +55,10 @@ My top-level loop is now:
   
 Which I'm pretty happy with. Get the instruction. Run the instruction. And use the result to determine the next instruction.
 
-Next up - I haven't implemented all 35 instructions, so it's not totally complete. I'm curious about some features like the ADC, and what emulation of them might look like. Maybe I'll head there next.
+### Next up
+  
+I haven't implemented all 35 instructions, so it's not totally complete. I'm curious about some features like the ADC, and what emulation of them might look like. Maybe I'll head there next.
+
+[Part 3 is here](http://bmantoni.github.io//pic-emulator-part-3/)
+  
+[Code is here](https://github.com/bmantoni/8bit-dart-emulator)
