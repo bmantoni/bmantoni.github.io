@@ -2,6 +2,7 @@
 published: true
 ---
 ## Building a PIC Emulator - Part 2
+[Part 1 is here](http://bmantoni.github.io//pic-emulator-part-1/)
 Code is here: https://github.com/bmantoni/8bit-dart-emulator
 
 ### Class Design
