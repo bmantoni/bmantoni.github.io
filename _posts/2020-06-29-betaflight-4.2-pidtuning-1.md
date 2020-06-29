@@ -15,4 +15,6 @@ So I'm going to raise the LPF1 filter range from 98-238Hz, to 115-275Hz.
 
 And lower the LPF2 filter cutoff from 210 to 190.
 
+![June29-bbl-trace-PIDs.PNG]({{site.baseurl}}/media/June29-bbl-trace-PIDs.PNG)
+
 To test this, I'm curious if this early rise in D goes away. If not, and if the noise peaks fall in into the filter ranges better, then I'll try lowering P gain and/or raising D gain.
