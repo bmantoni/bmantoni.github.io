@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Using Betaflight Blackbox Logs to tune out Propwash Oscillation
 
