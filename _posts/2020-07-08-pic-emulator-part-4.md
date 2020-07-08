@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Building a PIC Emulator - Part 4
 
