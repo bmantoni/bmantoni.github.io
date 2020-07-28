@@ -1,7 +1,9 @@
-# Menu navigation links
-
-- title: Theme Setup
-  url: /theme-setup/
-
-- title: External Link
-  url: http://mademistakes.com
+main:
+  - title: "Posts"
+    url: /posts/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+  - title: "About"
+    url: /about/

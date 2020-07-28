@@ -1,89 +1,95 @@
-title:            Bobby Mantoni's Blog
-description:      Bobby Mantoni's Blog
-disqus_shortname: cnttoinf
-reading_time:     true
-words_per_minute: 200
-#logo:             images/logo.png
-# When testing locally leave blank or use http://localhost:4000
-url: http://bmantoni.github.io/
-float_share: false
+title: Tinkering
+email:
+description: >- # this means to ignore newlines until "baseurl:"
+  Bobby Mantoni's blog
+twitter_username: cnt2infinity
+github_username: bmantoni
+minimal_mistakes_skin: default
+search: true
 
-menu:
-  - title: 'Home'
-    url: '/'
-  - title: 'About'
-    url: '/about'
-  - title: 'Tags'
-    url: '/tags'
-  - title: 'Categories'
-    url: '/categories'
-    type: 'categories'
-  - title: 'Favorites'
-    url: '#'
-    submenu:
-      - title: 'highlighter'
-        url: '/code-highlighting-post/'
-      - title: 'intro'
-        url: '/readability-post/'
+# Build settings
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: America/New_York
 
-# Owner/author information
-owner:
-  name:           Bobby M 
-  avatar:         avatar.jpg
-  bio:            "Things I've done half-way then moved on, but don't want to forget."
-  email:          no@spam.com
-  # Social networking links used in footer. Update and remove as you like.
-  twitter: none
-  facebook:
-  github: bmantoni
-  stackexchange:
-  linkedin:
-  instagram:
-  flickr:
-  tumblr:
+include:
+  - _pages
 
-social:
-  - title: "github"
-    url: "https://github.com/bmantoni"
-# Background image to be tiled on all pages
-background:
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
 
-# Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
-
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
-future:      true
-highlighter: rouge
-markdown:    kramdown
-gems:
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
   - jekyll-sitemap
-sass:
-  sass_dir: _sass
-  style: compressed
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+author:
+  name   : "Bobby Mantoni"
+  avatar : "/assets/images/bio-photo.jpg"
+  bio    : "Coder. Architect. Quad Pilot. Pendantic philosopher."
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://mantoni.me"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/bmantoni"
 
-# Amount of post to show on home page
-paginate: 5
+footer:
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://mantoni.me"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/bmantoni"
 
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  use_coderay: true
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
 
-  coderay:
-    coderay_line_numbers: nil
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
-
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
