@@ -42,7 +42,7 @@ plugins:
 
 author:
   name   : "Bobby Mantoni"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/me.jpg"
   bio    : "Coder. Architect. Quad Pilot. Pendantic philosopher."
   links:
     - label: "Website"

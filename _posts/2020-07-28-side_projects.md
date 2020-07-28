@@ -1,10 +1,10 @@
 ---
 published: true
 ---
-## Fun Projects on the Side
+Fun Projects on the Side
 
-### PIC Emulator
+**PIC Emulator**
 
-### Zombie Simulator
+**Zombie Simulator**
 
-### Arduino-Powered Kids' Toy
+**Arduino-Powered Kids' Toy**
