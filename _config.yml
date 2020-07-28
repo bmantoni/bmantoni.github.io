@@ -53,7 +53,7 @@ author:
       url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/bmantoni"
+      url: "https://github.com/bmantoni?tab=repositories"
 
 footer:
   links:
