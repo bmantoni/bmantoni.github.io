@@ -43,7 +43,7 @@ plugins:
 author:
   name   : "Bobby Mantoni"
   avatar : "/assets/images/me.jpg"
-  bio    : "Coder. Architect. Quad Pilot. Pendantic philosopher."
+  bio    : "Coder. Software/Cloud architect. Quad Pilot. EDM fan."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
